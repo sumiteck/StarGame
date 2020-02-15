@@ -134,7 +134,7 @@ public class GameBoard extends View{
         m = new Matrix();
         bm1 = BitmapFactory.decodeResource(getResources(), R.drawable.spaceship);
         bm2 = BitmapFactory.decodeResource(getResources(), R.drawable.stone);
-        bm3 =BitmapFactory.decodeResource(getResources(), R.drawable.spaceship);
+        bm3 =BitmapFactory.decodeResource(getResources(), R.drawable.shuttle);
         sprite1Bounds = new Rect(0,0, bm1.getWidth(), bm1.getHeight());
         sprite2Bounds = new Rect(0,0, bm2.getWidth(), bm2.getHeight());
         sprite3Bounds = new Rect(0,0,bm3.getWidth(), bm3.getHeight());
@@ -157,11 +157,11 @@ public class GameBoard extends View{
         Rect r2 = new Rect(sprite2.x, sprite2.y, sprite2.x + sprite2Bounds.width(), sprite2.y + sprite2Bounds.height());
         Rect r3 = new Rect(sprite3.x, sprite3.y, sprite3.x + sprite3Bounds.width(), sprite3.y + sprite3Bounds.height());
         Rect r4 = new Rect(r1);
-        if(r1.intersect(r2)) {
+        if(r1.intersect(r3) && r2.intersect(r3)) {
             for (int i = r1.left; i<r1.right; i++) {
                 for (int j = r1.top; j<r1.bottom; j++) {
-                    if (bm1.getPixel(i-r3.left, j-r3.top)!= Color.TRANSPARENT) {
-                        if (bm2.getPixel(i-r2.left, j-r2.top) != Color.TRANSPARENT) {
+                    if (bm1.getPixel(i-r1.left, j-r1.top)!= Color.TRANSPARENT) {
+                        if (bm3.getPixel(i-r3.left, j-r3.top) != Color.TRANSPARENT) {
                             lastCollision = new Point(sprite2.x + i-r2.left, sprite2.y + j-r2.top);
                             return true;
                         }
